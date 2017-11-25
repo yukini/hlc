@@ -1,0 +1,4 @@
+{
+    //"python.pythonPath": "/Users/yukini/dev/python/myvenv/bin/python",
+    "terminal.integrated.shellArgs.osx": ["-c", "source ../bin/activate; zsh -i"]
+}
