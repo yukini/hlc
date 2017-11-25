@@ -124,29 +124,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-# Fetch Django's project directory
-print("* BASE_DIR: " + BASE_DIR)
-# Fetch the project_root
-# PROJECT_ROOT = os.path.dirname(BASE_DIR)
-# print("* PROJECT_ROOT: " + PROJECT_ROOT)
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-print("* STATIC_ROOT: " + STATIC_ROOT)
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'entry/static/'),
 )
-print(STATICFILES_DIRS)
 
+# Using Django Static Precompiler.
+# https://django-static-precompiler.readthedocs.io/en/stable/
 STATIC_PRECOMPILER_OUTPUT_DIR = 'compiled'
 STATIC_PRECOMPILER_USE_CACHE = False
 
 STATIC_PRECOMPILER_COMPILERS = (
     'static_precompiler.compilers.CoffeeScript',
     'static_precompiler.compilers.Babel',
-    'static_precompiler.compilers.Handlebars',
-    'static_precompiler.compilers.SASS',
-    'static_precompiler.compilers.SCSS',
     'static_precompiler.compilers.LESS',
-    'static_precompiler.compilers.Stylus',
+)
+
+STATICFILES_FINDERS = (
+    # default finders.
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'static_precompiler.finders.StaticPrecompilerFinder',
 )
