@@ -127,12 +127,19 @@ STATIC_URL = '/static/'
 # Fetch Django's project directory
 print("* BASE_DIR: " + BASE_DIR)
 # Fetch the project_root
-PROJECT_ROOT = os.path.dirname(BASE_DIR)
-print("* PROJECT_ROOT: " + PROJECT_ROOT)
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+# PROJECT_ROOT = os.path.dirname(BASE_DIR)
+# print("* PROJECT_ROOT: " + PROJECT_ROOT)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 print("* STATIC_ROOT: " + STATIC_ROOT)
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'entry/static/'),
+)
+print(STATICFILES_DIRS)
+
 STATIC_PRECOMPILER_OUTPUT_DIR = 'compiled'
+STATIC_PRECOMPILER_USE_CACHE = False
 
 STATIC_PRECOMPILER_COMPILERS = (
     'static_precompiler.compilers.CoffeeScript',
