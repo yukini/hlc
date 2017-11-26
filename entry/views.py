@@ -1,9 +1,11 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render, redirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
 from .models import UserInfo
 
 
 def index(request):
+    print('entry index')
     return render(request, 'entry/index.html', {})
 
 
@@ -12,6 +14,9 @@ def input(request):
 
 
 def confirm(request):
-    print(request)
-    print(request.POST)
+    if request.method == 'POST':
+        print(request.POST)
+        # use Post-Redirect-Get shortcut
+        return redirect('entry:confirm')
+
     return render(request, 'entry/confirm.html', {})
