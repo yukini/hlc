@@ -1,8 +1,20 @@
-{% load compile_static %} {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static "entry/style.less"|compile %}" />
+{% extends 'base/base.html' %}
+{% load compile_static %}
+{% load static %}
+{% block style %}
+  <link rel="stylesheet" type="text/css" href="{% static "entry/style.less"|compile %}" />
+{% endblock style %}
 
-<ul>
-  <li>test</li>
-  <li>test2</li>
-  <li>test3</li>
-</ul>
+{% block container %}
+
+<form action="" method="post">
+  {% include "contents/entry/input/name.html" %}
+  <input type="submit" value="確認画面へ" />
+</form>
+
+{% endblock container %}
+
+{% block body %}
+  body - test 
+  {% include "contents/included.html" %}
+{% endblock body %}

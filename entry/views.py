@@ -3,6 +3,7 @@ from django.http import HttpResponse
 
 
 def index(request):
+    test ="ak"
     return render(request, 'entry/index.html', {})
 
 
