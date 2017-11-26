@@ -18,5 +18,3 @@ DEBUG = True
 
 # override
 STATIC_PRECOMPILER_DISABLE_AUTO_COMPILE = False
-
-print(SECRET_KEY)
