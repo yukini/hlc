@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from os import environ
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -134,12 +136,21 @@ STATICFILES_FINDERS = (
     'static_precompiler.finders.StaticPrecompilerFinder',
 )
 
+DATABASES = {
+    'default': {
+        # will be overritten
+    }
+}
+
+if 'SECRET_KEY' in environ:
+    SECRET_KEY = environ['SECRET_KEY']
+    STATIC_PRECOMPILER_DISABLE_AUTO_COMPILE = environ['STATIC_PRECOMPILER_DISABLE_AUTO_COMPILE']
+
+# update db settings
+db_from_env = dj_database_url.config(conn_max_age=400)
+DATABASES['default'].update(db_from_env)
+
 try:
     from .local_settings import *
 except ImportError:
     pass
-
-# update db settings
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=400)
-DATABASES['default'].update(db_from_env)
