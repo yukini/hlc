@@ -7,11 +7,7 @@
 
 {% block container %}
 
-<form action="confirm" method="post">
-  {% csrf_token %}
-  {% include "contents/entry/input/name.html" %}
-  <input type="submit" value="確認画面へ"/>
-</form>
+  確認画面
 
 {% endblock container %}
 

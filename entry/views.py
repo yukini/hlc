@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import UserInfo
 
 
 def index(request):
-    test ="ak"
     return render(request, 'entry/index.html', {})
 
 
@@ -12,4 +12,6 @@ def input(request):
 
 
 def confirm(request):
+    print(request)
+    print(request.POST)
     return render(request, 'entry/confirm.html', {})
