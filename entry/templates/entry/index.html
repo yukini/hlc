@@ -1,24 +1,8 @@
-{% load compile_static %}
-{% load static %}
+{% load compile_static %} {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "entry/style.less"|compile %}" />
 
-<link rel="stylesheet"  type="text/css" href="{% static "entry/style.less"|compile %}" />
-
-{% if latest_question_list %}
 <ul>
-    {% for question in latest_question_list %}
-    <li>
-        <a href="/polls/{{ question.id }}/">{{ question.question_text }}</a>
-    </li>
-    {% endfor %}
+  <li>test</li>
+  <li>test2</li>
+  <li>test3</li>
 </ul>
-{% else %}
-<p>No polls are available.</p>
-<ul>
-    <li>
-        test1
-    </li>
-    <li>
-        test2
-    </li>
-</ul>
-{% endif %}

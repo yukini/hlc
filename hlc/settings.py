@@ -19,13 +19,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@2m=vjonnsl7h_88p%_8zfx_(@qgnx2t-70s+7k@z9oe3avw2q'
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -56,7 +55,7 @@ ROOT_URLCONF = 'hlc.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,17 +73,6 @@ WSGI_APPLICATION = 'hlc.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ain',
-        'USER': 'yukini',
-        'PASSWORD': 'testuser',
-        'HOST': '192.168.33.10',
-        'PORT': 5432,
-    }
-}
 
 
 # Password validation
@@ -125,9 +113,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'entry/static/'),
-)
 
 # Using Django Static Precompiler.
 # https://django-static-precompiler.readthedocs.io/en/stable/
@@ -147,3 +132,13 @@ STATICFILES_FINDERS = (
     # other finders..
     'static_precompiler.finders.StaticPrecompilerFinder',
 )
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+
+# update db settings
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=400)
+DATABASES['default'].update(db_from_env)
