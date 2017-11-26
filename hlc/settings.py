@@ -117,7 +117,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Using Django Static Precompiler.
 # https://django-static-precompiler.readthedocs.io/en/stable/
 STATIC_PRECOMPILER_OUTPUT_DIR = 'compiled'
-STATIC_PRECOMPILER_USE_CACHE = False
+# heroku does not have lessc command?
+STATIC_PRECOMPILER_DISABLE_AUTO_COMPILE = True
 
 STATIC_PRECOMPILER_COMPILERS = (
     'static_precompiler.compilers.CoffeeScript',
