@@ -2,7 +2,7 @@
 {% load compile_static %}
 {% load static %}
 {% block style %}
-  <link rel="stylesheet" type="text/css" href="{% static "entry/style.less"|compile %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'entry/style.less'|compile %}"/>
 {% endblock style %}
 
 {% block container %}
@@ -17,8 +17,8 @@
 
 {% block body %}
   body - test
-  {% include "contents/included.html" %}
-  <ul>
-    <li>te</li>
-  </ul>
+  {% include 'contents/included.html' %}
+<ul>
+  <li>te</li>
+</ul>
 {% endblock body %}
