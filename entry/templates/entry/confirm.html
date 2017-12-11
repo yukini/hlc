@@ -12,9 +12,22 @@
 {% endblock container %}
 
 {% block body %}
-  body - test
   {% include "contents/included.html" %}
-  <ul>
-    <li>te</li>
-  </ul>
+  <dl>
+    <dt>苗字</dt>
+    <dd>
+      {{form.kanji_last_name}}
+    </dd>
+    <dt>名前</dt>
+    <dd>
+      {{form.kanji_first_name}}
+    </dd>
+  </dl>
+
+  <form action="{% url 'entry:complete' %}' " method="post">
+    {% csrf_token %}
+    <input type="submit" value="完了">
+  </form>
+
+  <a href="{% url 'entry:input' %}">return</a>
 {% endblock body %}

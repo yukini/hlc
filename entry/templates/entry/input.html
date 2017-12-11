@@ -9,10 +9,11 @@
 {% endblock container %}
 
 {% block body %}
-<form method="post">
+<form action="{% url 'entry:confirm' %}" method="post">
   {% csrf_token %}
 
-  {{form}}
+  {{form.as_p}}
+
   <button type="submit">to_confirm</button>
 </form>
 {% endblock body %}

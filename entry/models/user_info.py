@@ -21,7 +21,7 @@ class UserInfo(models.Model):
     update_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.pub_date
+        return self.kanji_name_first
 
     # マネージドアトリビュー ト (managed attribute)
     # http://qh73xebitbucketorg.readthedocs.io/ja/latest/1.Programmings/python/LIB/django/model/main/#id4
@@ -35,6 +35,6 @@ class UserInfo(models.Model):
         return '%s %s' % (self.kana_name_last, self.kana_name_first)
     full_kana_name = property(_get_full_kana_name)
 
-    def get_absolute_url(self):
-        from django.urls import reverse
-        return reverse('entry:confirm', kwargs={})
+    # def get_absolute_url(self):
+    #     from django.urls import reverse
+    #     return reverse('entry:confirm', kwargs={})

@@ -1,7 +1,7 @@
 from django import forms
 from django.utils import timezone
 
-from .models import UserInfo
+from entry.models import UserInfo
 
 
 class UserInfoForm(forms.ModelForm):
