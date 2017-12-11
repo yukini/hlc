@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% load compile_static %}
+{% load static %}
+{% block style %}
+  <link rel="stylesheet" type="text/css" href="{% static 'entry/style.less'|compile %}"/>
+{% endblock style %}
+
+{% block container %}
+{% endblock container %}
+
+{% block body %}
+<form method="post">
+  {% csrf_token %}
+
+  {{form}}
+  <button type="submit">to_confirm</button>
+</form>
+{% endblock body %}

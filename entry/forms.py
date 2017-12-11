@@ -1,5 +1,12 @@
 from django import forms
+from django.utils import timezone
+
+from .models import UserInfo
 
 
-class MyForm(forms.Form):
-    text = forms.CharField(max_length=100)
+class UserInfoForm(forms.ModelForm):
+    class Meta:
+        model = UserInfo
+        fields = (
+            "kanji_name_last",
+            "kanji_name_first",)

@@ -17,23 +17,24 @@ class UserInfo(models.Model):
 
     tel = models.CharField(max_length=20)
 
-    pub_date = models.DateTimeField('date published')
-
-    def post(self):
-        self.pub_date = timezone.now()
-        self.save()
+    pub_date = models.DateTimeField(auto_now_add=True)
+    update_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.pub_date
 
     # マネージドアトリビュー ト (managed attribute)
     # http://qh73xebitbucketorg.readthedocs.io/ja/latest/1.Programmings/python/LIB/django/model/main/#id4
-    def _get_full_kanji_name(self):
+    def _get_full_kanji_name(self) -> str:
         "Returns the person's full name."
         return '%s %s' % (self.kanji_name_last, self.kanji_name_first)
     full_kanji_name = property(_get_full_kanji_name)
 
-    def _get_full_kana_name(self):
+    def _get_full_kana_name(self) -> str:
         "Returns the person's full name."
         return '%s %s' % (self.kana_name_last, self.kana_name_first)
     full_kana_name = property(_get_full_kana_name)
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('entry:confirm', kwargs={})
